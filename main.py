@@ -6,7 +6,7 @@ def num_of_team():
         print("The minimum number of teams is 2, try again.")
         return num_of_team()
 
-# this will house the second operation -- team naming and storing // LEFT OFF: ADD USER INPUT VALIDATION 2nd OP
+# this will house the second operation -- team naming and storing // LEFT OFF: IF INVALID USER INPUT THEN NEED TO RESUME WHERE IT LEFT OFF INSTEAD OF RESTARTING THE WHOLE LOOP
 def name_teams():
     for num in range(int(num_teams)):
         num = 1
@@ -16,8 +16,16 @@ def name_teams():
             new_team = input(f"Enter the name for team #{num}: ")
             team_names[f"team #{num}"] = new_team
             num +=1
+            if len(new_team) < 2:  # validates min char needed for team name
+                print("Team names must have at least 2 characters, try again.")
+            elif len(new_team.split()) > 2:  # validates max word len for team name
+                print("Team names may have at most 2 words, try again.")
+            else:
+                pass
         break
-
+       
+num_of_team()
+name_teams()
 # number of games played by each team
 num_games = input("Enter the number of games played by each team: ")
 
