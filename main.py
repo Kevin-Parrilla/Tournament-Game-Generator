@@ -15,13 +15,16 @@ def name_teams():
         while num <= int(num_teams):
             new_team = input(f"Enter the name for team #{num}: ")
             team_names[f"team #{num}"] = new_team
-            num +=1
+            num += 1
             if len(new_team) < 2:  # validates min char needed for team name
                 print("Team names must have at least 2 characters, try again.")
+                num += (-1)  # resets team name entry until valid
             elif len(new_team.split()) > 2:  # validates max word len for team name
                 print("Team names may have at most 2 words, try again.")
+                num += (-1)
             else:
                 pass
+        print(team_names)
         break
        
 num_of_team()
