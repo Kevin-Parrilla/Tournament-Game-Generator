@@ -24,14 +24,19 @@ def name_teams():
                 num += (-1)
             else:
                 pass
-        print(team_names)
         break
-       
+
+# number of games played by each team
+def games_played():
+    min_games = int(num_teams) - 1
+    num_games = input("Enter the number of games played by each team: ")
+    if int(num_games) < min_games:
+        print("Invalid number of games. Each team plays each other at least once in the regular season, try again.")
+        return games_played()
+
 num_of_team()
 name_teams()
-# number of games played by each team
-num_games = input("Enter the number of games played by each team: ")
-
+games_played()
 # number of wins each team had
 for num in range(int(num_teams)):
     num = 1
