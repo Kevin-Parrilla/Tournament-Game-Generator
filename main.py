@@ -10,6 +10,7 @@ def num_of_team():
 def name_teams():
     for num in range(int(num_teams)):
         num = 1
+        global team_names
         team_names = {}
 
         while num <= int(num_teams):
@@ -29,24 +30,38 @@ def name_teams():
 # number of games played by each team
 def games_played():
     min_games = int(num_teams) - 1
+    global num_games
     num_games = input("Enter the number of games played by each team: ")
-    if int(num_games) < min_games:
+    if int(num_games) < min_games:  # validates user input
         print("Invalid number of games. Each team plays each other at least once in the regular season, try again.")
         return games_played()
+
+# number of wins each team had
+def win_record():
+    for num in range(int(num_teams)):
+        num = 1
+        team_names_lst = list(team_names.values())
+        team_wins = {}
+        i = 0
+        max_wins = int(num_games)
+        min_wins = 0
+
+        while num <= int(num_teams):
+            num_wins = input(f"Enter the number of wins Team {team_names_lst[i]} had: ")
+            team_wins[f"Team {team_names_lst[i]}"] = num_wins
+            i += 1
+            num += 1
+            if int(num_wins) < min_wins:
+                print("The minimum number of wins is 0, try again.")
+                i += (-1)
+                num += (-1)
+            elif int(num_wins) > max_wins:
+                print(f"The maximum number of wins is {int(num_games)}, try again.")
+                i += (-1)
+                num += (-1)
+        break
 
 num_of_team()
 name_teams()
 games_played()
-# number of wins each team had
-for num in range(int(num_teams)):
-    num = 1
-    team_names_lst = list(team_names.values())
-    team_wins = {}
-    i = 0
-
-    while num <= int(num_teams):
-        num_wins = input(f"Enter the number of wins Team {team_names_lst[i]} had: ")
-        team_wins[f"Team {team_names_lst[i]}"] = num_wins
-        i += 1
-        num += 1
-    break
+win_record()
